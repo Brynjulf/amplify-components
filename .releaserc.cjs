@@ -37,7 +37,7 @@ const RULES = {
 };
 
 module.exports = {
-  branches: ["main"],
+  branches: [{ name: "main" }],
   plugins: [
     [
       "semantic-release-gitmoji",
