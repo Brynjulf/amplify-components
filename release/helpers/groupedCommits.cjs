@@ -1,6 +1,6 @@
 const gitmojis = require('gitmojis').gitmojis;
 
-const groupMappings = require('../groupMapping.cjs');
+const groupMappings = require('../utils/groupMapping.cjs');
 
 const maleConstructionWorker = '👷‍♂️';
 
