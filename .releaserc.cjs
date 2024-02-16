@@ -61,7 +61,7 @@ module.exports = {
         },
       },
     ],
-    // "@semantic-release/github",
+    "@semantic-release/github",
     // Generate changelog
     // "@semantic-release/npm",
     // {
@@ -69,12 +69,12 @@ module.exports = {
     //   tarballDir: "dist",
     // },
 
-    [
-      "@semantic-release/changelog",
-      {
-        changelogFile: "CHANGELOG.md",
-        changelogTitle: "# CHANGELOG",
-      },
-    ],
+    // [
+    //   "@semantic-release/changelog",
+    //   {
+    //     changelogFile: "CHANGELOG.md",
+    //     changelogTitle: "# CHANGELOG",
+    //   },
+    // ],
   ],
 };
