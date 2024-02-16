@@ -3,19 +3,16 @@ const fs = require("fs");
 
 const tplFile = path.resolve(
   __dirname,
-  "./config/release/templates/release-notes-template.hbs"
+  "./release/templates/release-notes-template.hbs"
 );
 const commitFile = path.resolve(
   __dirname,
-  "./config/release/templates/commit-template.hbs"
-);
-const groupedCommitsFile = path.resolve(
-  __dirname,
-  "./config/release/helpers/groupedCommits.js"
+  "./release/templates/commit-template.hbs"
 );
 const template = fs.readFileSync(tplFile, "utf-8");
 const commitTemplate = fs.readFileSync(commitFile, "utf-8");
-const groupedCommits = fs.readFileSync(groupedCommitsFile, "utf-8");
+
+const groupedCommits = require("./release/helpers/groupedCommits.cjs");
 
 // Use of Gitmojis to create rules
 const gitmojis = require("gitmojis").gitmojis;
@@ -34,10 +31,15 @@ const RULES = {
   patch: gitmojis
     .filter(({ semver }) => semver === PATCH)
     .map(({ emoji }) => emoji),
+  // Not needed, just if you wish to render commit
+  // with gitmojis without semver.
+  others: gitmojis
+    .filter(({ semver }) => semver === null)
+    .map(({ emoji }) => emoji),
 };
 
 module.exports = {
-  branches: [{ name: "main" }],
+  branches: ["main"],
   plugins: [
     [
       "semantic-release-gitmoji",
@@ -59,6 +61,14 @@ module.exports = {
         },
       },
     ],
+    // "@semantic-release/github",
+    // Generate changelog
+    // "@semantic-release/npm",
+    // {
+    //   npmPublish: false,
+    //   tarballDir: "dist",
+    // },
+
     [
       "@semantic-release/changelog",
       {
@@ -66,6 +76,5 @@ module.exports = {
         changelogTitle: "# CHANGELOG",
       },
     ],
-    // "@semantic-release/github",
   ],
 };
