@@ -59,6 +59,13 @@ module.exports = {
         },
       },
     ],
-    "@semantic-release/github",
+    [
+      "@semantic-release/changelog",
+      {
+        changelogFile: "CHANGELOG.md",
+        changelogTitle: "# CHANGELOG",
+      },
+    ],
+    // "@semantic-release/github",
   ],
 };
