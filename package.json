@@ -17,6 +17,42 @@
   "files": [
     "dist/*"
   ],
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      [
+        "semantic-release-gitmoji",
+        {
+          "releaseRules": "./release/utils/rules.cjs",
+          "releaseNotes": {
+            "template:": "./release/templates/release-notes-template.hbs",
+            "partials": {
+              "commitTemplate": "./release/templates/commit-template.hbs"
+            },
+            "helpers": {
+              "groupedCommits": "./release/helpers/groupedCommits.cjs"
+            },
+            "issueResolution": {
+              "template": "{baseUrl}/{owner}/{repo}/issues/{ref}",
+              "baseUrl": "https://github.com",
+              "source": "github.com",
+              "removeFromCommit": false,
+              "regex": "\/#\\d+\/g"
+            }
+          }
+        }
+      ],
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "CHANGELOG.md",
+          "changelogTitle": "# CHANGELOG"
+        }
+      ]
+    ]
+  },
   "sideEffects": false,
   "scripts": {
     "start": "NODE_OPTIONS=--openssl-legacy-provider && storybook dev -p 6006",
