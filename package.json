@@ -25,14 +25,14 @@
       [
         "semantic-release-gitmoji",
         {
-          "releaseRules": "./release/utils/rules.cjs",
+          "releaseRules": "${require('./release/utils/rules.cjs')}",
           "releaseNotes": {
-            "template:": "./release/templates/release-notes-template.hbs",
+            "template:": "${require('./release/templates/release-notes-template.hbs')}",
             "partials": {
-              "commitTemplate": "./release/templates/commit-template.hbs"
+              "commitTemplate": "${require('./release/templates/commit-template.hbs')}"
             },
             "helpers": {
-              "groupedCommits": "./release/helpers/groupedCommits.cjs"
+              "groupedCommits": "${require('./release/helpers/groupedCommits.cjs')}"
             },
             "issueResolution": {
               "template": "{baseUrl}/{owner}/{repo}/issues/{ref}",
